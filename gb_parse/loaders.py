@@ -19,6 +19,10 @@ def get_author(author):
         author["website"] = "".join(author["website"])
     else:
         author["website"] = None
+    if len(author["description"]) != 0:
+        author["description"] = "".join(author["description"])
+    else:
+        author["description"] = None
     if len(author["activity"]) != 0:
         author["activity"] = "".join(author["activity"]).lower().split(sep=', ')
     else:
