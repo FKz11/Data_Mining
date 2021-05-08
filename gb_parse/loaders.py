@@ -11,7 +11,7 @@ def get_description(script):
 
 
 def get_activity(string):
-    activity = "".join(string).lower().split(sep=', ')
+    activity = "".join(string).split(sep=', ')
     return activity
 
 
@@ -30,6 +30,7 @@ class VacancyLoader(ItemLoader):
 class AuthorLoader(ItemLoader):
     default_item_class = dict
     url_out = TakeFirst()
+    title_in = Join("")
     title_out = TakeFirst()
     price_in = Join("")
     website_out = TakeFirst()
