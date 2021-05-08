@@ -10,33 +10,29 @@ def get_description(script):
     return description
 
 
-def get_author(author):
-    if len(author["title"]) != 0:
-        author["title"] = "".join(author["title"])
-    else:
-        author["title"] = None
-    if len(author["website"]) != 0:
-        author["website"] = "".join(author["website"])
-    else:
-        author["website"] = None
-    if len(author["description"]) != 0:
-        author["description"] = "".join(author["description"])
-    else:
-        author["description"] = None
-    if len(author["activity"]) != 0:
-        author["activity"] = "".join(author["activity"]).lower().split(sep=', ')
-    else:
-        author["activity"] = None
-    return author
+def get_activity(string):
+    activity = "".join(string).lower().split(sep=', ')
+    return activity
 
 
-class HhLoader(ItemLoader):
+class VacancyLoader(ItemLoader):
     default_item_class = dict
     url_out = TakeFirst()
+    title_in = Join("")
     title_out = TakeFirst()
     price_in = Join("")
     price_out = TakeFirst()
     description_in = MapCompose(get_description)
     description_out = TakeFirst()
-    author_in = MapCompose(get_author)
     author_out = TakeFirst()
+
+
+class AuthorLoader(ItemLoader):
+    default_item_class = dict
+    url_out = TakeFirst()
+    title_out = TakeFirst()
+    price_in = Join("")
+    website_out = TakeFirst()
+    activity_out = MapCompose(get_activity)
+    description_in = Join("")
+    description_out = TakeFirst()
