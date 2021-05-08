@@ -32,7 +32,6 @@ class AuthorLoader(ItemLoader):
     url_out = TakeFirst()
     title_in = Join("")
     title_out = TakeFirst()
-    price_in = Join("")
     website_out = TakeFirst()
     activity_out = MapCompose(get_activity)
     description_in = Join("")
