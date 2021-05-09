@@ -12,30 +12,30 @@ import pytesseract
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 
-def get_price(string):
-    price = string + " ₽"
+def get_price(data):
+    price = data + " ₽"
     return price
 
 
-def get_address(string):
-    address = string.replace("\n ", "")
+def get_address(data):
+    address = data.replace("\n ", "")
     return address
 
 
-def get_parameters(parameters):
-    parameters_list_no_proc = [itm.replace(":", "") for itm in parameters if (itm != " ") and (itm != "\n  ")]
+def get_parameters(data):
+    parameters_list_no_proc = [itm.replace(":", "") for itm in data if (itm != " ") and (itm != "\n  ")]
     parameters_list = [itm[:-1] if itm[-1] == " " else itm for itm in parameters_list_no_proc]
     parameters_dict = dict(zip(parameters_list[::2], parameters_list[1::2]))
     return parameters_dict
 
 
-def get_author(string):
-    author = "https://www.avito.ru" + string
+def get_author(data):
+    author = "https://www.avito.ru" + data
     return author
 
 
-def get_phone(string):
-    phone_string = json_loads(string)["image64"].split(sep=',')[1]
+def get_phone(data):
+    phone_string = json_loads(data)["image64"].split(sep=',')[1]
     image = Image.open(BytesIO(b64decode(phone_string)))
     phone = pytesseract.image_to_string(image).replace("\n", "")
     return phone
