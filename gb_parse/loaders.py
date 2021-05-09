@@ -23,8 +23,8 @@ def get_address(string):
 
 
 def get_parameters(parameters):
-    parameters_list = [itm.replace(":", "") for itm in parameters if (itm != " ") and (itm != "\n  ")]
-    parameters_list = [itm[:-1] if itm[-1] == " " else itm for itm in parameters_list]
+    parameters_list_no_proc = [itm.replace(":", "") for itm in parameters if (itm != " ") and (itm != "\n  ")]
+    parameters_list = [itm[:-1] if itm[-1] == " " else itm for itm in parameters_list_no_proc]
     parameters_dict = dict(zip(parameters_list[::2], parameters_list[1::2]))
     return parameters_dict
 
