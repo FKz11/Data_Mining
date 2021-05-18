@@ -19,7 +19,6 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 from gb_parse.spiders.instagram import InstagramSpider
 
-
 if __name__ == "__main__":
     dotenv.load_dotenv(".env")
     crawler_settings = Settings()
